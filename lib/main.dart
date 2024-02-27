@@ -4,8 +4,16 @@ void main() => runApp(const MaterialApp(
       home: NityaID(),
     ));
 
-class NityaID extends StatelessWidget {
+class NityaID extends StatefulWidget {
   const NityaID({super.key});
+
+  @override
+  State<NityaID> createState() => _NityaIDState();
+}
+
+class _NityaIDState extends State<NityaID> {
+  int ninjaLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +30,16 @@ class NityaID extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
       ),
-      body: const Padding(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel += 1;
+          });
+        },
+        backgroundColor: Colors.grey[800],
+        child: const Icon(Icons.add),
+      ),
+      body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +82,7 @@ class NityaID extends StatelessWidget {
             //
             SizedBox(height: 10.0),
             //
-            Text("8",
+            Text("$ninjaLevel",
                 style: TextStyle(
                   color: Colors.amber,
                   letterSpacing: 2.0,
